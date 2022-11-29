@@ -1,31 +1,31 @@
 {
-	auto_https off
+    auto_https off
 }
 
 :80 {
-	log {
-		output stdout
-		format console
-		level INFO
-	}
+    log {
+        output stdout
+        format console
+        level INFO
+    }
 
-	handle /api/* {
-		reverse_proxy backend:8000
-	}
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
 
-	handle /admin/* {
-		reverse_proxy backend:8000
-	}
+    handle /admin/* {
+        reverse_proxy backend:8000
+    }
 
-	handle /static/* {
-		root * /usr/share/caddy/django_static
-		try_files {path} /index.html
-		file_server
-	}
+    handle /static/* {
+        root * /usr/share/caddy/django_static
+        try_files {path} /index.html
+        file_server
+    }
 
-	handle {
-		root * /usr/share/caddy/frontend
-		try_files {path} /index.html
-		file_server
-	}
+    handle {
+        root * /usr/share/caddy/frontend
+        try_files {path} /index.html
+        file_server
+    }
 }
